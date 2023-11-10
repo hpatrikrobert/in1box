@@ -1,5 +1,5 @@
 import { Checkbox, Grid } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Email from "./Email";
 
 const getEmails = async () => {
@@ -11,10 +11,19 @@ const getEmails = async () => {
   }
 };
 
-const EmailList = async () => {
+const EmailList = () => {
   const label = { inputProps: { "aria-label": "Select All Emails" } };
 
-  const { emails } = await getEmails();
+  const [emails, setEmails] = useState([]);
+
+  // If you fetch data, use useEffect
+  useEffect(() => {
+    async function fetchData() {
+      const { emails } = await getEmails();
+      setEmails(emails);
+    }
+    fetchData();
+  }, []);
 
   return (
     <div>

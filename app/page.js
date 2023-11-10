@@ -1,6 +1,6 @@
-import EmailList from '@/components/EmailList';
-import Image from 'next/image';
+"use client";
 
+import EmailList from '@/components/EmailList';
 
 export default function Home() {
   return (
