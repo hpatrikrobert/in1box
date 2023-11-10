@@ -25,7 +25,7 @@ const WriteEmail = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!sender || !title || !content) {
+    if (!email.sender || !email.title || !email.content) {
       alert("Sender, Title, and content are required!");
       return;
     }
