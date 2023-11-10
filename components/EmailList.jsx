@@ -1,3 +1,5 @@
+"use client";
+
 import { Checkbox, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Email from "./Email";
@@ -29,23 +31,23 @@ const EmailList = () => {
     <div>
       <div className="mx-10 px-4">
         <Grid container spacing={0} className="p-4 items-center">
-          <Grid xs={1}>
+          <Grid item xs={1}>
             <div>
               <Checkbox {...label} />
             </div>
           </Grid>
-          <Grid xs={2}>
+          <Grid item xs={2}>
             <p className=" text-sm text-slate-500">Email Sender</p>
           </Grid>
-          <Grid xs={5}>
+          <Grid item xs={5}>
             <div>
               <p className=" text-sm text-slate-500">Conversation</p>
             </div>
           </Grid>
-          <Grid xs={2}>
+          <Grid item xs={2}>
             <p className=" text-sm text-slate-500">Conversation Number</p>
           </Grid>
-          <Grid xs={2}>
+          <Grid item xs={2}>
             <p className=" text-sm text-slate-500">Last Updated</p>
           </Grid>
         </Grid>

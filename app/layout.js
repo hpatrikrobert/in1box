@@ -17,10 +17,10 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <NavBar />
         <Grid container spacing={0} className="h-[calc(100vh-6rem)]">
-          <Grid xs={2} className="px-4 border-r-2 border-slate-300 flex flex-col justify-between">
+          <Grid item xs={2} className="px-4 border-r-2 border-slate-300 flex flex-col justify-between">
             <Sidebar />
           </Grid>
-          <Grid xs={10} className="bg-slate-100">
+          <Grid item xs={10} className="bg-slate-100">
             {children}
           </Grid>
         </Grid>
