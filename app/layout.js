@@ -2,7 +2,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import NavBar from "../components/NavBar";
 import { Grid } from "@mui/material";
-import Sidebar from "@/components/Sidebar";
+import Navigation from "@/components/Navigation";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,11 +16,12 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <NavBar />
-        <Grid container spacing={0} className="h-[calc(100vh-6rem)]">
-          <Grid item xs={2} className="px-4 border-r-2 border-slate-300 flex flex-col justify-between">
-            <Sidebar />
+        <Grid container spacing={0}>
+          <Grid item xs={12} md={3} xl={2}>
+            <Navigation />
           </Grid>
-          <Grid item xs={10} className="bg-slate-100">
+          {/* TODO fix this sizing for mobile, it doesn't overlap completely */}
+          <Grid item xs={12} md={9} xl={10} className="bg-slate-100">
             {children}
           </Grid>
         </Grid>
