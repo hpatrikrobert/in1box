@@ -5,7 +5,7 @@ import React from "react";
 
 const Email = ({ email }) => {
   const label = { inputProps: { "aria-label": "Select Email" } };
-  const isAboveMobileScreen = useMediaQuery("(min-width : 768px)");
+  const isAboveMobileScreen = useMediaQuery("(min-width : 960px)");
 
   return (
     <>

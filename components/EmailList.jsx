@@ -28,7 +28,7 @@ const EmailList = () => {
     fetchData();
   }, []);
 
-  const isAboveMobileScreen = useMediaQuery("(min-width : 768px)");
+  const isAboveMobileScreen = useMediaQuery("(min-width : 960px)");
 
   return (
     <div>

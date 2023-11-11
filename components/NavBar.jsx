@@ -7,7 +7,7 @@ import React from "react";
 import { HiOutlineMailOpen } from "react-icons/hi";
 
 const NavBar = () => {
-  const isAboveMobileScreen = useMediaQuery("(min-width : 768px)");
+  const isAboveMobileScreen = useMediaQuery("(min-width : 960px)");
 
   return (
     <>
@@ -61,7 +61,7 @@ const NavBar = () => {
             <HiOutlineMailOpen className="mr-2" />
             In1Box
           </Link>
-          <div>Search</div> 
+          <div>Search</div>
         </nav>
       )}
     </>

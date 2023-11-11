@@ -20,7 +20,6 @@ export default function RootLayout({ children }) {
           <Grid item xs={12} md={3} xl={2}>
             <Navigation />
           </Grid>
-          {/* TODO fix this sizing for mobile, it doesn't overlap completely */}
           <Grid item xs={12} md={9} xl={10} className="bg-slate-100">
             {children}
           </Grid>

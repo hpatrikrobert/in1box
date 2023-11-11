@@ -6,7 +6,7 @@ import Link from "next/link";
 import React from "react";
 
 const Sidebar = () => {
-  const isAboveMobileScreen = useMediaQuery("(min-width : 768px)");
+  const isAboveMobileScreen = useMediaQuery("(min-width : 960px)");
 
   return (
     <>
