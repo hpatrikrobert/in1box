@@ -17,7 +17,7 @@ export async function GET() {
     try {
         await connectDB();
         const emails = await Email.find();
-        return NextResponse.json({ emails });
+        return NextResponse.json({ emails }, { status: 200 });
     } catch (error) {
         return NextResponse.json({ error: error.message }, { status: 500 });
     }

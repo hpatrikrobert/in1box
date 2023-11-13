@@ -1,32 +1,14 @@
 "use client";
 
 import { Checkbox, Grid, useMediaQuery } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import Email from "./Email";
-
-const getEmails = async () => {
-  try {
-    const emails = await fetch("http://localhost:3000/api/emails/", { cache: "no-store" });
-    return emails.json();
-  } catch (error) {
-    console.log(error);
-  }
-};
+import { Email_Context } from "@/app/providers";
 
 const EmailList = () => {
   const label = { inputProps: { "aria-label": "Select All Emails" } };
 
-  const [emails, setEmails] = useState([]);
-
-  // If you fetch data, use useEffect
-  // TODO move this logic up the tree. We need to use the emails in more components (NavBar in this case)
-  useEffect(() => {
-    async function fetchData() {
-      const { emails } = await getEmails();
-      setEmails(emails);
-    }
-    fetchData();
-  }, []);
+  const { emails } = useContext(Email_Context);
 
   const isAboveMobileScreen = useMediaQuery("(min-width : 960px)");
 

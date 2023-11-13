@@ -12,3 +12,13 @@ export async function POST(request) {
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
+
+export async function GET() {
+    try {
+        await connectDB();
+        const mailboxes = await Mailbox.find();
+        return NextResponse.json({ mailboxes }, { status: 200 });
+    } catch (error) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+}
