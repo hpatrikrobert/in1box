@@ -28,7 +28,7 @@ const getEmails = async () => {
 
 export default function Providers({ children }) {
     const [mailboxes, setMailboxes] = useState([]);
-    const [selectedMailbox, setSelectedMailbox] = useState("");
+    const [selectedMailbox, setSelectedMailbox] = useState({ id: "", address: "" });
     const [emails, setEmails] = useState([]);
 
     useEffect(() => {
@@ -37,7 +37,7 @@ export default function Providers({ children }) {
             setMailboxes(mailboxes);
             const { emails } = await getEmails();
             // if selectedMailbox is truthy, filter the emails to show only the emails where the sender has the correct email
-            if (selectedMailbox) {
+            if (selectedMailbox.address) {
                 const filteredEmails = emails.filter((email) => email.sender === selectedMailbox.address);
                 setEmails(filteredEmails);
             } else {

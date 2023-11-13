@@ -11,8 +11,9 @@ const Navigation = () => {
 
   const { selectedMailbox, setSelectedMailbox, mailboxes } = useContext(Mailbox_Context);
 
-  const handleClick = (id) => {
-    setSelectedMailbox(id);
+  const handleClick = (id, address) => {
+    setSelectedMailbox({ id: id, address: address });
+    console.log(selectedMailbox);
   };
 
   return (
@@ -27,7 +28,9 @@ const Navigation = () => {
               </div>
             </Link>
             <div className="mt-10">
-              <h3 className="font-bold text-xl cursor-pointer" onClick={() => setSelectedMailbox("")}>
+              <h3
+                className="font-bold text-xl cursor-pointer"
+                onClick={() => setSelectedMailbox({ id: "", address: "" })}>
                 Mailboxes
               </h3>
               {mailboxes.map((mailbox) => {
@@ -35,9 +38,9 @@ const Navigation = () => {
                   <div
                     key={mailbox._id}
                     className={`px-4 rounded py-2 cursor-pointer ${
-                      selectedMailbox === mailbox ? "bg-slate-100" : "hover:bg-slate-100"
+                      selectedMailbox.id === mailbox._id ? "bg-slate-100" : "hover:bg-slate-100"
                     }`}
-                    onClick={() => handleClick(mailbox)}>
+                    onClick={() => handleClick(mailbox._id, mailbox.address)}>
                     <p className="font-bold">{mailbox.name}</p>
                     <p className=" text-xs text-slate-500">{mailbox.address}</p>
                   </div>
