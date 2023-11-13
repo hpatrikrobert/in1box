@@ -19,7 +19,6 @@ const WriteEmail = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setEmail((prevEmail) => ({ ...prevEmail, sender: sender, [name]: value }));
-    console.log(email);
   };
 
   const handleSubmit = async (event) => {
