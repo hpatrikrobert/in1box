@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
-const Register = () => {
+const Register = async () => {
   const [user, setUser] = useState({ firstName: "", lastName: "", email: "", password: "" });
   const [error, setError] = useState("");
 
@@ -59,6 +61,10 @@ const Register = () => {
       console.log(error);
     }
   };
+
+  const session = await getServerSession(authOptions);
+
+  if (session) redirect("/dashboard");
 
   return (
     <div className="grid place-items-center h-[80vh]">
