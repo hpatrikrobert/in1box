@@ -1,6 +1,7 @@
 "use client";
 
-const { createContext, useState, useEffect } = require("react");
+import { createContext, useState, useEffect } from "react";
+import { SessionProvider } from "next-auth/react";
 
 // Mailboxes Context
 export const Mailbox_Context = createContext(null);
@@ -49,10 +50,12 @@ export default function Providers({ children }) {
 
 
     return (
-        <Mailbox_Context.Provider value={{ mailboxes, setMailboxes, selectedMailbox, setSelectedMailbox }}>
-            <Email_Context.Provider value={{ emails }}>
-                {children}
-            </Email_Context.Provider>
-        </Mailbox_Context.Provider>
+        <SessionProvider>
+            <Mailbox_Context.Provider value={{ mailboxes, setMailboxes, selectedMailbox, setSelectedMailbox }}>
+                <Email_Context.Provider value={{ emails }}>
+                    {children}
+                </Email_Context.Provider>
+            </Mailbox_Context.Provider>
+        </SessionProvider>
     );
 }

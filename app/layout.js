@@ -3,8 +3,7 @@ import './globals.css';
 import NavBar from "../components/NavBar";
 import { Grid } from "@mui/material";
 import Navigation from "@/components/Navigation";
-import Providers, { Mailbox_Context } from './providers';
-import { useContext } from 'react';
+import Providers from './providers';
 
 const inter = Inter({ subsets: ['latin'] });
 
