@@ -16,7 +16,7 @@ const Email = ({ email }) => {
   return (
     <>
       {isAboveMobileScreen ? (
-        <Link href={`/${email._id}`}>
+        <Link href={`/dashboard/${email._id}`}>
           <div className="mx-10 px-4 border bg-white hover:bg-slate-50">
             <Grid container spacing={0} className="p-4 items-center">
               <Grid xs={1}>

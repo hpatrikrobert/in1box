@@ -13,7 +13,7 @@ const NavBar = () => {
     <>
       {isAboveMobileScreen ? (
         <nav className="flex justify-between h-24 items-center px-10 border-b-2 border-slate-300 bg-main-blue">
-          <Link className="flex text-4xl text-white font-bold" href="/">
+          <Link className="flex text-4xl text-white font-bold" href="/dashboard">
             <HiOutlineMailOpen className="mr-2" />
             In1Box
           </Link>
@@ -42,7 +42,7 @@ const NavBar = () => {
                 placeholder="Search Emails, People..."
               />
             </div>
-            <Link href="/profile">
+            <Link href="/dashboard/profile">
               <Image
                 className="rounded-full h-16 w-16 object-cover"
                 src="/images/selfie-placeholder.jpeg"

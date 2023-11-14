@@ -47,20 +47,13 @@ const NewMailbox = () => {
     <div className="p-10 w-3/6 mx-auto mt-20 bg-white">
       <h2 className="text-2xl font-bold mb-2">Create A New Mailbox</h2>
       <hr className="mb-8 h-1 bg-gray-200 rounded" />
-      <form className="flex flex-col" onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
         {/* <InputLabel htmlFor="inbox-name">Inbox Name</InputLabel> */}
         <TextField type="text" name="name" value={mailbox.name} label={"Inbox Name"} onChange={handleChange} />
         {/* <InputLabel htmlFor="mail-address">Email Address</InputLabel> */}
-        <TextField
-          className="mt-4"
-          type="text"
-          name="address"
-          value={mailbox.address}
-          label={"Email Address"}
-          onChange={handleChange}
-        />
+        <TextField type="text" name="address" value={mailbox.address} label={"Email Address"} onChange={handleChange} />
         <div className="flex justify-between mt-10">
-          <Link className="text-red-800" href={"/"}>
+          <Link className="text-red-800" href={"/dashboard"}>
             Cancel
           </Link>
           <button className="bg-main-blue text-white w-60 p-2 rounded" type="submit">

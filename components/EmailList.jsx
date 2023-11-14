@@ -40,7 +40,7 @@ const EmailList = () => {
         </div>
       )}
       {emails.map((email) => (
-        <Email key={email._id} email={email} />
+        <Email key={email._id} email={email} id={email._id} />
       ))}
     </div>
   );

@@ -27,7 +27,7 @@ const Login = () => {
         return;
       }
 
-      router.replace("/");
+      router.replace("/dashboard");
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +47,7 @@ const Login = () => {
           {error && <div className="bg-red-500 text-sm text-white w-fit py-1 px-3 rounded-md mt-2">{error}</div>}
 
           <Link className="text-sm mt-3 text-right" href={"/register"}>
-            Don't have an account? <span className="underline font-bold">Register.</span>
+            Don&apos;t have an account? <span className="underline font-bold">Register.</span>
           </Link>
         </form>
       </div>

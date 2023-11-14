@@ -3,11 +3,12 @@
 import moment from "moment";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-const getEmail = async (path) => {
+const getEmail = async (id) => {
   try {
-    const email = await fetch(`http://localhost:3000/api/emails${path}`, { cache: "no-store" });
+    const email = await fetch(`http://localhost:3000/api/emails/${id}`, { cache: "no-store" });
     return email.json();
   } catch (error) {
     console.log(error);
@@ -15,16 +16,21 @@ const getEmail = async (path) => {
 };
 
 const SingleEmail = () => {
-  const pathname = usePathname();
+  const path = usePathname();
+  const id = path.split("/").pop();
+
   const [email, setEmail] = useState();
 
   useEffect(() => {
     async function fetchData() {
-      const { email } = await getEmail(pathname);
+      const { email } = await getEmail(id);
       setEmail(email);
     }
-    fetchData();
-  }, []);
+
+    if (id) {
+      fetchData();
+    }
+  }, [id]);
 
   if (!email) {
     return <div>Loading</div>;
@@ -33,7 +39,7 @@ const SingleEmail = () => {
   return (
     <div className="p-10 bg-white border-b">
       <div>
-        <Link className="text-red-700" href={"/"}>
+        <Link className="text-red-700" href={"/dashboard"}>
           Back to emails
         </Link>
       </div>
