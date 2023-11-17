@@ -1,9 +1,10 @@
-import EmailList from '@/components/EmailList';
+import EmailList from "@/components/EmailList";
+import Dashboard from "./dashboard/layout";
 
 export default function Home() {
   return (
     <>
-      <EmailList />
+      <Dashboard />
     </>
   );
 }
