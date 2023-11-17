@@ -5,6 +5,7 @@ const emailSchema = new Schema(
         sender: String,
         title: String,
         content: String,
+        user_id: String,
     },
     {
         timestamps: true,

@@ -5,10 +5,11 @@ import { styled } from "@mui/material/styles";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { getSession } from "next-auth/react";
 
 const WriteEmail = () => {
   const [sender, setSender] = useState("");
-  const [email, setEmail] = useState({ sender: sender, title: "", content: "" });
+  const [email, setEmail] = useState({ sender: sender, title: "", content: "", user_id: "" });
 
   const router = useRouter();
 
@@ -16,9 +17,11 @@ const WriteEmail = () => {
     setSender(event.target.value);
   };
 
-  const handleChange = (event) => {
+  const handleChange = async (event, request) => {
     const { name, value } = event.target;
-    setEmail((prevEmail) => ({ ...prevEmail, sender: sender, [name]: value }));
+    const userSessionID = await getSession({req: request});
+    setEmail((prevEmail) => ({ ...prevEmail, sender: sender, [name]: value, user_id: userSessionID.user.email }));
+    console.log(email);
   };
 
   const handleSubmit = async (event) => {

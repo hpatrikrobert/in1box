@@ -4,9 +4,9 @@ import Email from "@/models/email";
 
 export async function POST(request) {
     try {
-        const { sender, title, content } = await request.json();
+        const { sender, title, content, user_id } = await request.json();
         await connectDB();
-        await Email.create({ sender, title, content });
+        await Email.create({ sender, title, content, user_id });
         return NextResponse.json({ message: "Email Created" }, { status: 201 });
     } catch (error) {
         return NextResponse.json({ error: error.message }, { status: 500 });

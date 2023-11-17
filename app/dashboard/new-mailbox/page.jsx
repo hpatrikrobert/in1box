@@ -4,15 +4,17 @@ import { TextField } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { getSession } from "next-auth/react";
 
 const NewMailbox = () => {
-  const [mailbox, setMailbox] = useState({ name: "", address: "" });
+  const [mailbox, setMailbox] = useState({ name: "", address: "", user_id: "" });
 
   const router = useRouter();
 
-  const handleChange = (event) => {
+  const handleChange = async (event, request) => {
     const { name, value } = event.target;
-    setMailbox((prevMailbox) => ({ ...prevMailbox, [name]: value }));
+    const userSessionID = await getSession({req: request});
+    setMailbox((prevMailbox) => ({ ...prevMailbox, [name]: value, user_id: userSessionID.user.email }));
     console.log(mailbox);
   };
 

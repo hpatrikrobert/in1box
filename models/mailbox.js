@@ -4,6 +4,7 @@ const mailboxSchema = new Schema(
     {
         name: String,
         address: String,
+        user_id: String
     },
     {
         timestamps: true,
