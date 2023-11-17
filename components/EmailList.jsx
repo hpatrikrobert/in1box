@@ -5,11 +5,12 @@ import React, { useContext } from "react";
 import Email from "./Email";
 import { Email_Context } from "@/app/providers";
 
+
 const EmailList = () => {
   const label = { inputProps: { "aria-label": "Select All Emails" } };
 
   const { emails } = useContext(Email_Context);
-
+  console.log(emails);
   const isAboveMobileScreen = useMediaQuery("(min-width : 960px)");
 
   return (
@@ -39,6 +40,7 @@ const EmailList = () => {
           </Grid>
         </div>
       )}
+
       {emails.map((email) => (
         <Email key={email._id} email={email} id={email._id} />
       ))}

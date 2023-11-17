@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useState, useEffect } from "react";
-import { SessionProvider } from "next-auth/react";
+import { SessionProvider, getSession } from "next-auth/react";
 
 // Mailboxes Context
 export const Mailbox_Context = createContext(null);
@@ -33,9 +33,13 @@ export default function Providers({ children }) {
     const [emails, setEmails] = useState([]);
 
     useEffect(() => {
-        async function fetchData() {
+        async function fetchData(request) {
+            const sessionID = await getSession({req: request});
             const { mailboxes } = await getMailboxes();
             setMailboxes(mailboxes);
+            const filteredMBs = mailboxes.filter((mb) => mb.user_id === sessionID.user.email);
+            setMailboxes(filteredMBs);
+            console.log("FilteredMB", filteredMBs);
             const { emails } = await getEmails();
             // if selectedMailbox is truthy, filter the emails to show only the emails where the sender has the correct email
             if (selectedMailbox.address) {
