@@ -10,9 +10,8 @@ const EmailList = () => {
   const label = { inputProps: { "aria-label": "Select All Emails" } };
 
   const { emails } = useContext(Email_Context);
-  console.log(emails);
   const isAboveMobileScreen = useMediaQuery("(min-width : 960px)");
-
+  console.log("emails: ", emails);
   return (
     <div>
       {isAboveMobileScreen === true && (

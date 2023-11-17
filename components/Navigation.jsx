@@ -29,8 +29,7 @@ const Navigation = () => {
             </Link>
             <div className="mt-10">
               <h3
-                className="font-bold text-xl cursor-pointer"
-                onClick={() => setSelectedMailbox({ id: "", address: "" })}>
+                className="font-bold text-xl">
                 Mailboxes
               </h3>
               {mailboxes.map((mailbox) => {
