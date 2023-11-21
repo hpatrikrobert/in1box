@@ -2,6 +2,13 @@
 
 import { createContext, useState, useEffect } from "react";
 import { SessionProvider, getSession } from "next-auth/react";
+import email from "@/interfaces/email_Interface";
+import { NextApiRequest } from "next";
+
+interface EmailContextType {
+    emails: email[],
+    getEmails: () => Promise<void>,
+}
 
 // Mailboxes Context
 export const Mailbox_Context = createContext(null);
@@ -16,7 +23,10 @@ const getMailboxes = async () => {
 };
 
 // Email context
-export const Email_Context = createContext(null);
+export const Email_Context = createContext<EmailContextType>({
+    emails: [],
+    getEmails: async () => {}
+});
 
 const getEmails = async () => {
     try {
@@ -34,8 +44,9 @@ export default function Providers({ children }) {
     const [emails, setEmails] = useState([]);
 
     useEffect(() => {
-        async function fetchData(request) {
+        async function fetchData(request: NextApiRequest) {
             const sessionID = await getSession({req: request});
+            console.log(request);
             const { mailboxes } = await getMailboxes();
             setMailboxes(mailboxes);
             const filteredMBs = mailboxes.filter((mb) => mb.user_id === sessionID.user.email);
