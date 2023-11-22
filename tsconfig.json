@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/providers.js", "app/dashboard/write-email/page.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/providers.js", "app/dashboard/write-email/page.tsx", "__tests__/register.test.js"],
   "exclude": ["node_modules"]
 }
