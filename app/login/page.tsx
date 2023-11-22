@@ -16,7 +16,7 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const res = await signIn("credentials", {
+      const res: any = await signIn("credentials", {
         email,
         password,
         redirect: false,

@@ -2,8 +2,9 @@ import NavBar from '@/components/NavBar';
 import Navigation from '@/components/Navigation';
 import { Grid } from '@mui/material';
 import React from 'react';
+import { props } from '../providers';
 
-const Dashboard = ({ children }) => {
+const Dashboard = ({ children }: props) => {
     return (
         <>
             <NavBar />

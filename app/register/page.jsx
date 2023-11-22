@@ -2,9 +2,8 @@
 "use client";
 
 import Link from "next/link";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { getServerSession } from "next-auth";
 // import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 const Register = () => {

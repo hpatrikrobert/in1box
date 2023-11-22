@@ -1,5 +1,6 @@
-import EmailList from "@/components/EmailList";
 import Dashboard from "./dashboard/layout";
+import React from "react";
+
 
 export default function Home() {
   return (
