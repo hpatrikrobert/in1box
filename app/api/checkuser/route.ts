@@ -4,11 +4,11 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
-    await connectDB();
+    // await connectDB();
     const res = await request.json();
     const email = res.email;
     const userCheck = await User.findOne({ email }).select("_id");
-    return NextResponse.json(userCheck);
+    return NextResponse.json({userCheck});
   } catch (error) {
     console.log(error);
     return NextResponse.json({

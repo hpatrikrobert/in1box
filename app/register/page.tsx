@@ -31,6 +31,7 @@ const Register = () => {
     }
 
     try {
+      console.log("Hello");
       const resUserExists = await fetch("/api/checkuser", {
         method: "POST",
         headers: {
