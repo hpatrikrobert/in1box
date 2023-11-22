@@ -1,14 +1,14 @@
 import connectDB from "@/libs/db";
 import User from "@/models/user";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request) {
+export async function POST(request: NextRequest) {
   try {
-    // await connectDB();
+    await connectDB();
     const res = await request.json();
     const email = res.email;
     const userCheck = await User.findOne({ email }).select("_id");
-    return NextResponse.json({ userCheck: newUser });
+    return NextResponse.json(userCheck);
   } catch (error) {
     console.log(error);
     return NextResponse.json({

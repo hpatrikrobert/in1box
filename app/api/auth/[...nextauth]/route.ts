@@ -1,17 +1,29 @@
 import connectDB from "@/libs/db";
 import User from "@/models/user";
+import { NextAuthOptions, RequestInternal, SessionOptions, SessionStrategy } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-import bcrypt from "bcryptjs";
+import email from "@/interfaces/email_Interface";
 
-export const authOptions = {
+interface Credentials {
+  email: email,
+  password: string,
+}
+
+interface CustomSessionOptions extends SessionOptions{
+  strategy: SessionStrategy,
+  jwt: boolean,
+}
+
+
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "credentials",
       credentials: {},
 
-      async authorize(credentials) {
-        const { email, password } = credentials;
+      async authorize(credentials: Record<never, string> | undefined, req: Pick<RequestInternal, "body" | "method" | "headers" | "query">) {
+        const { email, password } = credentials as Credentials;
 
         try {
           await connectDB();
@@ -35,7 +47,7 @@ export const authOptions = {
   session: {
     strategy: "jwt",
     jwt: true,
-  },
+  } as CustomSessionOptions,
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/login",

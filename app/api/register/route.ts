@@ -1,7 +1,6 @@
 import connectDB from "@/libs/db";
 import User from "@/models/user";
-import { NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
+import { NextRequest, NextResponse } from "next/server";
 
 // export async function POST(req) {
 //     try {
@@ -19,13 +18,13 @@ import bcrypt from "bcryptjs";
 //     }
 // }
 
-export async function POST(request) {
+export async function POST(request: NextRequest) {
   try {
     const { firstName, lastName, email, password } = await request.json();
     await connectDB();
     await User.create({ firstName, lastName, email, password });
     return NextResponse.json({ message: "User created" }, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

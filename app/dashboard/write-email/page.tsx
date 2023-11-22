@@ -1,11 +1,17 @@
 "use client";
 
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { getSession } from "next-auth/react";
+import { NextRequest } from "next/server";
+import email from "@/interfaces/email_Interface";
+
+interface prevEmailInt {
+  
+}
 
 const WriteEmail = () => {
   const [sender, setSender] = useState("");
@@ -13,18 +19,18 @@ const WriteEmail = () => {
 
   const router = useRouter();
 
-  const handleSenderChange = (event) => {
+  const handleSenderChange = (event: SelectChangeEvent<string>) => {
     setSender(event.target.value);
   };
 
-  const handleChange = async (event, request) => {
+  const handleChange = async (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
-    const userSessionID = await getSession({req: request});
-    setEmail((prevEmail) => ({ ...prevEmail, sender: sender, [name]: value, user_id: userSessionID.user.email }));
-    console.log(email);
-  };
+    const userSessionID = await getSession();
+    const userIdAsString = userSessionID?.user?.email || '';
+    setEmail({ ...email, sender: sender, [name]: value, user_id: userIdAsString as string });
+    };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.MouseEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!email.sender || !email.title || !email.content) {

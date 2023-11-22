@@ -2,10 +2,11 @@ import { Checkbox, useMediaQuery } from "@mui/material";
 import { Grid } from "@mui/material";
 import moment from "moment";
 import Link from "next/link";
-import React, { useState, MouseEvent } from "react";
+import React, { useState } from "react";
 import Mail from "@/interfaces/email_Interface";
 
-const Email = (email: Mail) => {
+const Email = ({ mail }: {mail: {email: Mail; id: string } }) => {
+  const { email } = mail;
   const isAboveMobileScreen = useMediaQuery("(min-width : 960px)");
   const [isChecked, setChecked] = useState(false);
 

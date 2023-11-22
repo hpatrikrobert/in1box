@@ -5,13 +5,14 @@ import { useMediaQuery } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
+import mbInterface from "@/interfaces/mb_interface";
 
 const Navigation = () => {
   const isAboveMobileScreen = useMediaQuery("(min-width : 960px)");
 
   const { selectedMailbox, setSelectedMailbox, mailboxes } = useContext(Mailbox_Context);
 
-  const handleClick = (id, address) => {
+  const handleClick = (id: string, address: string) => {
     setSelectedMailbox({ id: id, address: address });
     console.log(selectedMailbox);
   };
@@ -32,7 +33,7 @@ const Navigation = () => {
                 className="font-bold text-xl">
                 Mailboxes
               </h3>
-              {mailboxes.map((mailbox) => {
+              {mailboxes.map((mailbox: mbInterface) => {
                 return (
                   <div
                     key={mailbox._id}

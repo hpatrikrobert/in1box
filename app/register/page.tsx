@@ -17,12 +17,12 @@ const Register = () => {
 
   const router = useRouter();
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setUser((prevUser) => ({ ...prevUser, [name]: value }));
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.MouseEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!user.firstName || !user.lastName || !user.email || !user.password) {
@@ -40,7 +40,8 @@ const Register = () => {
       });
 
       const { userCheck } = await resUserExists.json();
-      console.log(userCheck);
+      console.log("UserCheck", userCheck);
+      console.log("resUserExists");
 
       if (userCheck) {
         setError("Email already exists");
@@ -55,9 +56,7 @@ const Register = () => {
         body: JSON.stringify(user),
       });
 
-      if (res.ok) {
-        const form = event.target;
-        form.reset();
+      if (res.ok) {        
         router.push("/login");
       } else {
         console.log("User registration failed");

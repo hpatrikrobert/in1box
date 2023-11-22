@@ -3,10 +3,10 @@
 import moment from "moment";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import email from "@/interfaces/email_Interface";
 
-const getEmail = async (id) => {
+const getEmail = async (id: string | undefined) => {
   try {
     const email = await fetch(`http://localhost:3000/api/emails/${id}`, { cache: "no-store" });
     return email.json();
@@ -19,7 +19,7 @@ const SingleEmail = () => {
   const path = usePathname();
   const id = path.split("/").pop();
 
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState({title: "", sender: "", updatedAt: new Date(), content: ""});
 
   useEffect(() => {
     async function fetchData() {

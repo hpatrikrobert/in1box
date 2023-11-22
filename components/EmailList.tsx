@@ -4,7 +4,7 @@ import { Checkbox, Grid, useMediaQuery } from "@mui/material";
 import React, { useContext } from "react";
 import Email from "./Email";
 import { Email_Context } from "@/app/providers";
-
+import EmailInt from "@/interfaces/email_Interface";
 
 const EmailList = () => {
   const label = { inputProps: { "aria-label": "Select All Emails" } };
@@ -40,8 +40,8 @@ const EmailList = () => {
         </div>
       )}
 
-      {emails.map((email) => (
-        <Email key={email._id} email={email} id={email._id} />
+      {emails.emails.map((email: EmailInt) => (
+        <Email key={email._id} mail={{email, id: email._id}} />
       ))}
     </div>
   );

@@ -9,8 +9,8 @@ const Profile = () => {
   const { data: session } = useSession();
   console.log(session);
 
-  async function handleClick(request) {
-    const userSessionID = await getSession({req: request});
+  async function handleClick() {
+    const userSessionID = await getSession();
     console.log(userSessionID);
   }
 

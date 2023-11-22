@@ -11,14 +11,15 @@ const NewMailbox = () => {
 
   const router = useRouter();
 
-  const handleChange = async (event, request) => {
+  const handleChange = async (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
-    const userSessionID = await getSession({req: request});
-    setMailbox((prevMailbox) => ({ ...prevMailbox, [name]: value, user_id: userSessionID.user.email }));
+    const userSessionID = await getSession();
+    const userIdAsString = userSessionID?.user?.email || '';
+    setMailbox({ ...mailbox, [name]: value, user_id: userIdAsString as string });
     console.log(mailbox);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.MouseEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!mailbox.name || !mailbox.address) {

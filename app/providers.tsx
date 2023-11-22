@@ -1,12 +1,12 @@
 "use client";
 
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, ReactNode } from "react";
 import { SessionProvider, getSession } from "next-auth/react";
 import email from "@/interfaces/email_Interface";
 import mbInterface from "@/interfaces/mb_interface";
 
 export interface props {
-    children: string,
+    children: ReactNode,
 }
 
 interface Email_Context {
@@ -21,7 +21,7 @@ interface Mailbox_Context {
 }
 
 // Mailboxes Context
-export const Mailbox_Context = createContext<Mailbox_Context | null>(null);
+export const Mailbox_Context = createContext<Mailbox_Context | any>(null);
 
 const getMailboxes = async () => {
     try {
@@ -33,12 +33,11 @@ const getMailboxes = async () => {
 };
 
 // Email context
-export const Email_Context = createContext<Email_Context | null>(null);
+export const Email_Context = createContext<Email_Context | any>(null);
 
 const getEmails = async () => {
     try {
         const emails = await fetch("http://localhost:3000/api/emails/", { cache: "no-store" });
-        
         return emails.json();
     } catch (error) {
         console.log(error);

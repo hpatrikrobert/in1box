@@ -12,7 +12,7 @@ const Login = () => {
 
   const router = useRouter();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.MouseEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
